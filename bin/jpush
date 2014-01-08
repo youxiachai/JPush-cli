@@ -1,0 +1,119 @@
+#!/usr/bin/env node
+
+var program = require('commander'),
+  client = require('../index'),
+  debug = require('debug')('shell: jpush'),
+    fs = require('fs'),
+    path = require('path'),
+  jpushInfo = require('../package.json');
+
+var jpushKeyFile = path.resolve('.') + '/jpush_key.json'
+
+debug(jpushKeyFile)
+
+  program
+    .version(jpushInfo.version)
+    .option('-m, --message [message]', 'push message')
+    .option('-r, --receiver [receiver]', 'support 2(tag),3(alias),4(boardcast), default 4', 4)
+    .option('-v, --value [value]', 'receiver value')
+    .option('-p, --platform [platform]', 'just support android or ios, default android', 'android')
+    .option('-c, --custom [custom]', 'just support android')
+    .option('-k, --key [key]', 'just support android')
+
+
+  program
+    .command('init')
+    .description('init jpush key file')
+    .action(function(){
+        var jpushKeyInfo = {
+            appkey : "",
+            masterSecret : ""
+        }
+        fs.writeFileSync(jpushKeyFile, JSON.stringify(jpushKeyInfo))
+        process.exit();
+    });
+
+  program.parse(process.argv);
+  //show help
+  program.on('--help', function () {
+    process.exit();
+  });
+
+
+function showHelp() {
+  process.stdout.write(program.helpInformation());
+  program.emit('--help');
+}
+
+var keyFileExists = fs.existsSync(jpushKeyFile)
+
+//checkout current key file exists
+if (keyFileExists) {
+    push(jpushKeyFile)
+}else{
+    console.log('jpush_key.json not exists you should exec jpush init')
+}
+
+function push(jpushKeyFile) {
+
+    var config = require(jpushKeyFile)
+
+    if (!config.appkey && !config.masterSecret){
+        console.log('you should set appkey and masterSecret in jpus_key.json')
+        process.exit();
+    }
+    if(program.message || program.custom && program.receiver > 1 && program.receiver < 5 ) {
+        var params = {}
+        params.receiver = {}
+        params.receiver.type =  program.receiver
+
+        if(params.receiver.type != 4){
+            if (program.value) {
+                params.receiver.value = program.value
+            }else {
+                process.stdout.write('you should set receiver value')
+                process.exit();
+            }
+
+        }
+
+        params.msg = {}
+
+        client.init(config)
+        if(program.custom){
+            params.msg.content = {}
+            params.msg.content.message = {}
+            params.msg.content.message[program.key] = program.value
+            debug(JSON.stringify(params))
+            client.pushMessage(params, function (err, result){
+                if (err) {
+                    return process.stdout.write(err)
+                }
+                process.stdout.write(result)
+            })
+        }else{
+            params.msg.platform = program.platform
+            params.msg.content = {
+                n_content:  program.message
+            };
+            client.pushNotification(params, function (err, result){
+                if (err) {
+                    return process.stdout.write(err)
+                }
+
+                process.stdout.write(result)
+            })
+        }
+
+
+
+    }else {
+        showHelp()
+    }
+}
+
+
+
+
+
+

@@ -1,0 +1,23 @@
+{
+  "name": "jpush-cli",
+  "version": "0.0.1",
+  "description": "jpush repl app",
+  "main": "index.js",
+  "bin": {
+    "jpush": "./bin/jpush"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "youxiachai",
+  "license": "MIT",
+  "dependencies": {
+    "jpush": "~0.1.7",
+    "commander": "~2.1.0"
+  },
+  "devDependencies": {
+    "mocha": "~1.16.2",
+    "should": "~2.1.1",
+    "debug": "~0.7.4"
+  }
+}
