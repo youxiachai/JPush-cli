@@ -1,6 +1,6 @@
 {
   "name": "jpush-cli",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "jpush repl app",
   "main": "index.js",
   "bin": {
@@ -13,11 +13,11 @@
   "license": "MIT",
   "dependencies": {
     "jpush": "~0.1.7",
-    "commander": "~2.1.0"
+    "commander": "~2.1.0",
+     "debug": "~0.7.4"
   },
   "devDependencies": {
     "mocha": "~1.16.2",
-    "should": "~2.1.1",
-    "debug": "~0.7.4"
+    "should": "~2.1.1"
   }
 }
