@@ -21,6 +21,7 @@ debug(jpushKeyFile)
     .option('-k, --key [key]', 'just support android')
 
 
+
   program
     .command('init')
     .description('init jpush key file')
@@ -83,7 +84,7 @@ function push(jpushKeyFile) {
         if(program.custom){
             params.msg.content = {}
             params.msg.content.message = {}
-            params.msg.content.message[program.key] = program.value
+            params.msg.content.message[program.key] = program.message
             debug(JSON.stringify(params))
             client.pushMessage(params, function (err, result){
                 if (err) {

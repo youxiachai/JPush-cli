@@ -25,6 +25,39 @@ jpush init
 jpush -m HelloWorld
 ```
 
+#### 指定tag
+
+
+```
+jpush -r 2 -v test -m HelloWorld
+```
+
+#### 指定alias
+
+```
+jpush -r 3 -v test -m HelloWorld
+```
+
+### 推送Android 消息
+
+#### 广播
+
+```
+jpush -c -k key -m value
+```
+
+#### 指定tag
+
+```
+jpush -r 2 -v test -c -k key -m HelloWorld
+```
+
+#### 指定alias
+
+```
+jpush -r 3 -v test -c -k key -m HelloWorld
+```
+
 ## 支持本项目
 如果你觉得这个项目还不错,就请作者喝杯咖啡吧
 
