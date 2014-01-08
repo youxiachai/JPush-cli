@@ -11,6 +11,8 @@ pids
 logs
 results
 
+jpush_key.json
+
 npm-debug.log
 node_modules
 .idea

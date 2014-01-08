@@ -19,8 +19,10 @@ jpush init
 
 ### 推送通知
 
-```
+#### 广播
 
+```
+jpush -m HelloWorld
 ```
 
 ## 支持本项目

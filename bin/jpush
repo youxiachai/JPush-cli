@@ -98,7 +98,7 @@ function push(jpushKeyFile) {
             };
             client.pushNotification(params, function (err, result){
                 if (err) {
-                    return process.stdout.write(err)
+                    return console.log(err)
                 }
 
                 process.stdout.write(result)
