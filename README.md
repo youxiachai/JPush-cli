@@ -29,13 +29,13 @@ jpush -m HelloWorld
 
 
 ```
-jpush -r 2 -v test -m HelloWorld
+jpush -t test -m HelloWorld
 ```
 
 #### 指定alias
 
 ```
-jpush -r 3 -v test -m HelloWorld
+jpush -a test -m HelloWorld
 ```
 
 ### 推送Android 消息
@@ -49,13 +49,13 @@ jpush -c -k key -m value
 #### 指定tag
 
 ```
-jpush -r 2 -v test -c -k key -m HelloWorld
+jpush -t test -c -k key -m HelloWorld
 ```
 
 #### 指定alias
 
 ```
-jpush -r 3 -v test -c -k key -m HelloWorld
+jpush -a test -c -k key -m HelloWorld
 ```
 
 ## 支持本项目

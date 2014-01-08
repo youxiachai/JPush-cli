@@ -1,6 +1,6 @@
 {
   "name": "jpush-cli",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "jpush repl app",
   "main": "index.js",
   "bin": {

@@ -14,8 +14,8 @@ debug(jpushKeyFile)
   program
     .version(jpushInfo.version)
     .option('-m, --message [message]', 'push message')
-    .option('-r, --receiver [receiver]', 'support 2(tag),3(alias),4(boardcast), default 4', 4)
-    .option('-v, --value [value]', 'receiver value')
+    .option('-t, --tags [tags]', 'set push tags')
+    .option('-a, --alias [alias]', 'set push alias')
     .option('-p, --platform [platform]', 'just support android or ios, default android', 'android')
     .option('-c, --custom [custom]', 'just support android')
     .option('-k, --key [key]', 'just support android')
@@ -66,17 +66,19 @@ function push(jpushKeyFile) {
     if(program.message || program.custom && program.receiver > 1 && program.receiver < 5 ) {
         var params = {}
         params.receiver = {}
-        params.receiver.type =  program.receiver
+        params.receiver.type =  4
 
-        if(params.receiver.type != 4){
-            if (program.value) {
-                params.receiver.value = program.value
-            }else {
-                process.stdout.write('you should set receiver value')
-                process.exit();
-            }
-
+        if(program.tags){
+             params.receiver.type =  2
+             params.receiver.value = program.tags
         }
+
+        if(program.alias){
+             params.receiver.type =  3
+             params.receiver.value = program.alias
+        }
+
+
 
         params.msg = {}
 
