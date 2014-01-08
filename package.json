@@ -16,6 +16,14 @@
     "commander": "~2.1.0",
      "debug": "~0.7.4"
   },
+  "homepage": "https://github.com/youxiachai/JPush-cli",
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:youxiachai/JPush-cli.git"
+    },
+    "bugs": {
+        "url": "https://github.com/youxiachai/JPush-cli/issues"
+    },
   "devDependencies": {
     "mocha": "~1.16.2",
     "should": "~2.1.1"
